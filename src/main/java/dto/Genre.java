@@ -1,2 +1,5 @@
-package dto;public enum genre {
+package dto;
+
+public enum Genre {
+    DRAMA, ACTION, HORROR
 }
