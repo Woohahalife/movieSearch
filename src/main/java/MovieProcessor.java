@@ -6,6 +6,11 @@ public class MovieProcessor {
         MovieConfig config = new MovieConfig();
         MovieOperationController controller = config.movieOperationController();
 
+        long heapSize = Runtime.getRuntime().totalMemory();
+        System.out.println("Heap Size(MB) : " + heapSize / (1024 * 1024) + " MB");
+
         controller.Applicationinit();
     }
 }
+
+

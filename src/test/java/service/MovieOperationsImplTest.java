@@ -2,15 +2,9 @@ package service;
 
 import dto.Genre;
 import dto.Movie;
-import dto.Genre;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import java.util.Arrays;
-
-import static org.assertj.core.api.Assertions.*;
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 
 class MovieOperationsImplTest {
 

@@ -1,11 +1,6 @@
 package service;
 
 import dto.Movie;
-import dto.Genre;
-
-import java.util.Arrays;
-import java.util.Objects;
-import java.util.zip.DeflaterOutputStream;
 
 public class MovieOperationsImpl implements MovieOperations {
 
@@ -16,26 +11,40 @@ public class MovieOperationsImpl implements MovieOperations {
     @Override
     public void add(Movie movie) {
         movieBox[index++] = movie;
-        movieBox[index-1].setIndex(index);
     }
 
     @Override
     public Movie[] findAll() {
 
+        // 들어간 영화 개수(index)에 해당하는 공간의 배열 생성
         Movie[] findAllMovies = new Movie[index];
 
-        for(int i=0; i<index; i++) {
-            if(movieBox[i] != null) {
-                findAllMovies[i] = movieBox[i];
+        if (findAllMovies.length != 0) {
+            if (index >= 2) {
+                for (int i = 0; i < index; i++) {
+                    findAllMovies[i] = movieBox[i];
+                }
+
+                for (int i = 0; i < index - 1; i++) {
+                    for (int j = 0; j < index - i - 1; j++) {
+                        if (findAllMovies[j].getRating() < findAllMovies[j + 1].getRating()) {
+                            Movie temp;
+                            temp = findAllMovies[j];
+                            findAllMovies[j] = findAllMovies[j + 1];
+                            findAllMovies[j + 1] = temp;
+                        }
+                    }
+                }
+            } else {
+                findAllMovies[0] = movieBox[0];
             }
         }
 
-        return findAllMovies;
+        return sortIndex(findAllMovies);
     }
 
     @Override
     public int findCount(String keyword) {
-
         int count = 0;
 
         for (Movie box : movieBox) {
@@ -53,13 +62,15 @@ public class MovieOperationsImpl implements MovieOperations {
 
     @Override
     public Movie[] getMovieByKeyword(String keyword, int count) {
-        Movie[] result = new Movie[count];
-        for (int i=0; i<index; i++) {
+        Movie[] movieByKeyword = new Movie[count];
+
+        for (int i = 0; i < index; i++) {
             if (movieBox[i].getTitle().equals(keyword) || movieBox[i].getMajor().equals(keyword) || movieBox[i].getGenre().name().equals(keyword)) {
-                result[--count] = movieBox[i];
+                movieByKeyword[--count] = movieBox[i];
             }
         }
-        return result;
+
+        return sortIndex(movieByKeyword);
     }
 
     @Override
@@ -83,6 +94,15 @@ public class MovieOperationsImpl implements MovieOperations {
         return getMovieByKeyword(genre, count);
     }
 
+    public Movie[] sortIndex(Movie[] movie) {
+        if (movie.length >= 1) {
+            for (int i = 0; i < movie.length; i++) {
+                movie[i].setIndex(i + 1);
+            }
+        }
+
+        return movie;
+    }
 
     @Override
     public boolean exit() {

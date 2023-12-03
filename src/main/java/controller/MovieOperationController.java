@@ -4,6 +4,7 @@ import dto.Movie;
 import dto.Genre;
 import service.MovieOperations;
 
+import java.sql.SQLOutput;
 import java.util.Arrays;
 import java.util.Scanner;
 
@@ -23,6 +24,7 @@ public class MovieOperationController {
         System.out.println("<<영화 관리 프로그램>>");
 
         while (!flag) {
+
             Movie[] movies = movieOperations.findAll();
 
             System.out.println("1. 영화 정보 입력");
@@ -48,7 +50,7 @@ public class MovieOperationController {
                     String major = sc.next();
                     System.out.print("상영시간(분)을 입력해주세요 : ");
                     int intTime = sc.nextInt();
-                    String runningTime = intTime  + "분";
+                    String runningTime = intTime + "분";
                     System.out.print("평점을 입력해주세요 : ");
                     double rating = sc.nextDouble();
                     System.out.printf("장르를 선택해주세요 %n DRAMA : 1번 / ACTION : 2번 / HORROR : 3번 %n : ");
@@ -64,34 +66,75 @@ public class MovieOperationController {
                     System.out.println("영화가 등록되었습니다.");
 
                     break;
+
+                /**
+                 * 전체 영화목록 검색(내림차순 정렬)
+                 */
                 case 2:
 
-                    if(movies.length == 0) {
+                    if (movies.length == 0) {
                         System.out.println("영화가 없습니다.");
-                    }else {
+                    } else {
                         System.out.println(Arrays.toString(movies));
                     }
 
                     break;
+
+                /**
+                 * 영화명, 주인공, 장르로 검색
+                 */
                 case 3:
-                    if(movies.length == 0) {
-                        System.out.print("검색어를 입력해주세요");
-                    } else {
-                        String setTitle = sc.next();
-
-                        Movie[] moviesByTitle = movieOperations.searchTitle(setTitle);
-                        System.out.println(Arrays.toString(moviesByTitle));
-                    }
-                    break;
                 case 4:
-
-                    break;
                 case 5:
+                    if (movies.length == 0) {
+                        System.out.print("영화가 없습니다.");
+                        break;
+                    }
+
+                    if (selectNum == 5) {
+                        System.out.printf("검색할 장르를 선택해주세요 %n DRAMA : 1번 입력 / ACTION : 2번 입력 / HORROR : 3번 입력 %n : ");
+                    } else {
+                        System.out.println("검색어를 입력해주세요");
+                    }
+
+                    String setKeyword = sc.next();
+
+                    Movie[] moviesBykeyword;
+                    if (selectNum == 3) {
+                        moviesBykeyword = movieOperations.searchTitle(setKeyword);
+                        System.out.println(Arrays.toString(moviesBykeyword));
+                    }
+
+                    if (selectNum == 4) {
+                        moviesBykeyword = movieOperations.searchMajor(setKeyword);
+                        System.out.println(Arrays.toString(moviesBykeyword));
+                    }
+
+                    if (selectNum == 5) {
+                        if (setKeyword.equals("1") || setKeyword.equals("2") || setKeyword.equals("3")) {
+
+                            Genre[] genres = Genre.values();
+
+                            setKeyword = genres[Integer.parseInt(setKeyword)-1].name();
+
+                            System.out.println("genres = " + genres[0]);
+
+                            moviesBykeyword = movieOperations.searchGenre(setKeyword);
+                            System.out.println(Arrays.toString(moviesBykeyword));
+                        }else {
+                            System.out.println("잘못된 입력입니다.");
+                        }
+                    }
 
                     break;
+
+                /**
+                 * 영화 정보 삭제
+                 */
                 case 6:
 
                     break;
+
                 case -1:
                     System.out.println("종료되었습니다.");
                     flag = movieOperations.exit();
