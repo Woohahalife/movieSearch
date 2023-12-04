@@ -13,6 +13,9 @@ public interface MovieOperations {
     Movie[] searchTitle(String title);
     Movie[] searchMajor(String major);
     Movie[] searchGenre(String genre);
+    void removeTarget(int num);
+    void removeAll();
+    Movie[] sortIndex(Movie[] movie);
 
     boolean exit();
 
