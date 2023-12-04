@@ -47,11 +47,11 @@ public class Movie {
 
     @Override
     public String toString() {
-        return "영화"+ (index) +": " + title + '\'' +
+        return "\n영화"+ (index) +": '" + title + '\'' +
                 ", 주연 : '" + major + '\'' +
                 ", 러닝타임 : " + runningTime +
                 ", 평점 : " + rating +
                 ", 장르 : " + genre +
-                "\n";
+                "";
     }
 }

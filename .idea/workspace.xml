@@ -4,11 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="683ba163-3471-401f-bd6e-7fd2a0b346c5" name="Changes" comment="컨셉별 영화정보 검색 출력 확인 &amp; 평점별 내림차순 정렬 기능 추가, 장르별 선택 출력 버그 해결">
+    <list default="true" id="683ba163-3471-401f-bd6e-7fd2a0b346c5" name="Changes" comment="기능별 요구사항(기능 선택 오류시 원하는 반환점으로 롤백) 구현 및 테스트 완료">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/controller/MovieOperationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/MovieOperationController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dto/Movie.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dto/Movie.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/service/MovieOperations.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/service/MovieOperations.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/service/MovieOperationsImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/service/MovieOperationsImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/service/MovieOperationsImplTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/service/MovieOperationsImplTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -166,6 +168,7 @@
       <workItem from="1701435444861" duration="16773000" />
       <workItem from="1701606806908" duration="10871000" />
       <workItem from="1701652272750" duration="11018000" />
+      <workItem from="1701677736003" duration="9217000" />
     </task>
     <task id="LOCAL-00001" summary="dto, config, service, controller 구성 및 1차설계완료">
       <option name="closed" value="true" />
@@ -183,7 +186,15 @@
       <option name="project" value="LOCAL" />
       <updated>1701617640867</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="기능별 요구사항(기능 선택 오류시 원하는 반환점으로 롤백) 구현 및 테스트 완료">
+      <option name="closed" value="true" />
+      <created>1701677882104</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1701677882104</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -192,7 +203,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="dto, config, service, controller 구성 및 1차설계완료" />
     <MESSAGE value="컨셉별 영화정보 검색 출력 확인 &amp; 평점별 내림차순 정렬 기능 추가, 장르별 선택 출력 버그 해결" />
-    <option name="LAST_COMMIT_MESSAGE" value="컨셉별 영화정보 검색 출력 확인 &amp; 평점별 내림차순 정렬 기능 추가, 장르별 선택 출력 버그 해결" />
+    <MESSAGE value="기능별 요구사항(기능 선택 오류시 원하는 반환점으로 롤백) 구현 및 테스트 완료" />
+    <option name="LAST_COMMIT_MESSAGE" value="기능별 요구사항(기능 선택 오류시 원하는 반환점으로 롤백) 구현 및 테스트 완료" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

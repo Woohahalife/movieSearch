@@ -4,7 +4,6 @@ import dto.Movie;
 import dto.Genre;
 import service.MovieOperations;
 
-import java.sql.SQLOutput;
 import java.util.Arrays;
 import java.util.Scanner;
 
@@ -20,31 +19,33 @@ public class MovieOperationController {
         Scanner sc = new Scanner(System.in);
         boolean flag = false;
 
-
-        System.out.println("<<영화 관리 프로그램>>");
-
         while (!flag) {
 
             Movie[] movies = movieOperations.findAll();
 
-            System.out.println("1. 영화 정보 입력");
-            System.out.println("2. 전체 영화 목록 검색");
-            System.out.println("3. 영화명으로 검색하기");
-            System.out.println("4. 영화 주인공으로 검색하기");
-            System.out.println("5. 영화 장르로 검색하기");
-            System.out.println("6. 영화 정보 삭제");
-            System.out.println("7. 영화 목록 전체 삭제");
-            System.out.println("-1. 종료");
+            System.out.println("┌========= 장르별 영화 검색 프로그램(어..? 이게 왜 돼 조(3조)) ==========┐");
+            System.out.println("│ (I) 영화 정보 입력                                                   ");
+            System.out.println("│ (P) 전체 영화 목록 출력                                              ");
+            System.out.println("│ (S) 영화 검색하기                                              ");
+            System.out.println("│ (D) 영화 삭제                                                  ");
+            System.out.println("│ (E) 종료                                                         ");
+            System.out.println("===================================================================┘");
+            System.out.printf("입력 (대소문자 구분X) : ");
+            String select = sc.next().toLowerCase();
+            String[] searchOption = {"i", "p", "s", "d", "e"};
 
-            int selectNum = sc.nextInt();
+            if (select.equals(vaildSearchOption(select, searchOption))) {
 
-            if (selectNum > 7 || (selectNum < 1 && selectNum != -1)) {
-                System.out.println("잘못된 입력입니다. 다시 입력해주세요");
+            } else {
+                System.out.println("잘못된 입력입니다.");
             }
 
-            switch (selectNum) {
+            switch (select) {
 
-                case 1:
+                /**
+                 * 영화 정보 입력
+                 */
+                case "i":
                     System.out.print("영화 타이틀을 입력해주세요 : ");
                     String title = sc.next();
                     System.out.print("주인공을 입력해주세요 : ");
@@ -54,7 +55,7 @@ public class MovieOperationController {
                     String runningTime = intTime + "분";
                     System.out.print("평점을 입력해주세요 : ");
                     double rating = sc.nextDouble();
-                    System.out.printf("장르를 선택해주세요 %n DRAMA : 1번 / ACTION : 2번 / HORROR : 3번 %n : ");
+                    System.out.printf("등록할 장르를 선택해주세요 %n DRAMA : 1번 / ACTION : 2번 / HORROR : 3번 %n : ");
                     int selectGanre = sc.nextInt();
 
                     Genre genre = null;
@@ -78,13 +79,13 @@ public class MovieOperationController {
                 /**
                  * 전체 영화목록 검색(내림차순 정렬)
                  */
-                case 2:
+                case "p":
 
                     if (movies.length == 0) {
                         System.out.printf("영화가 없습니다.%n%n");
                         break;
                     } else {
-                        System.out.println(Arrays.toString(movies));
+                        System.out.println(Arrays.toString(movies).replace("[", "").replace("]", ""));
                     }
 
                     break;
@@ -92,110 +93,168 @@ public class MovieOperationController {
                 /**
                  * 영화명, 주인공, 장르로 검색
                  */
-                case 3:
-                case 4:
-                case 5:
-                    while (true) {
-                        if (movies.length == 0) {
-                            System.out.printf("영화가 없습니다.%n%n");
-                            break;
-                        }
+                case "s":
+                    System.out.println("=======================");
+                    System.out.println("1.영화명으로 검색하기");
+                    System.out.println("2.주인공으로 검색하기");
+                    System.out.println("3.장르로 검색하기");
+                    System.out.println("=======================");
+                    System.out.print("번호 입력 : ");
+                    int selectNum = sc.nextInt();
 
-                        if (selectNum == 5) {
-                            System.out.printf("검색할 장르를 선택해주세요 %n DRAMA : 1번 입력 / ACTION : 2번 입력 / HORROR : 3번 입력 %n : ");
-                        } else {
-                            System.out.println("검색어를 입력해주세요");
-                        }
+                    if (selectNum > 3 || selectNum < 1) {
+                        System.out.println("잘못된 입력입니다! 초기화면으로 돌아갑니다.");
+                        break;
+                    }
 
-                        String setKeyword = sc.next();
+                    switch (selectNum) {
 
-                        Movie[] moviesBykeyword;
-                        if (selectNum == 3) {
-                            moviesBykeyword = movieOperations.searchTitle(setKeyword);
-
-                            if(moviesBykeyword.length == 0) {
-                                System.out.printf("영화가 없습니다.%n%n");
-                            }else {
-                                System.out.println(Arrays.toString(moviesBykeyword));
-                            }
-
-                            break;
-                        }
-
-                        if (selectNum == 4) {
-                            moviesBykeyword = movieOperations.searchMajor(setKeyword);
-
-                            if(moviesBykeyword.length == 0) {
-                                System.out.printf("영화가 없습니다.%n%n");
-                            }else {
-                                System.out.println(Arrays.toString(moviesBykeyword));
-                            }
-
-                            break;
-                        }
-
-                        if (selectNum == 5) {
-                            if (setKeyword.equals("1") || setKeyword.equals("2") || setKeyword.equals("3")) {
-
-                                Genre[] genres = Genre.values();
-
-                                setKeyword = genres[Integer.parseInt(setKeyword) - 1].name();
-
-                                moviesBykeyword = movieOperations.searchGenre(setKeyword);
-
-                                if(moviesBykeyword.length == 0) {
+                        case 1:
+                        case 2:
+                        case 3:
+                            while (true) {
+                                if (movies.length == 0) {
                                     System.out.printf("영화가 없습니다.%n%n");
-                                }else {
-                                    System.out.println(Arrays.toString(moviesBykeyword));
+                                    break;
                                 }
 
-                                break;
-                            } else {
-                                System.out.println("잘못된 입력입니다.");
+                                if (selectNum == 3) {
+                                    System.out.printf("검색할 장르를 선택해주세요 %n DRAMA : 1번 입력 / ACTION : 2번 입력 / HORROR : 3번 입력 %n : ");
+                                } else {
+                                    System.out.println("검색어를 입력해주세요");
+                                }
+
+                                String setKeyword = sc.next();
+
+                                Movie[] moviesBykeyword;
+                                if (selectNum == 1) {
+                                    moviesBykeyword = movieOperations.searchTitle(setKeyword);
+
+                                    if (moviesBykeyword.length == 0) {
+                                        System.out.printf("영화가 없습니다.%n%n");
+                                    } else {
+                                        System.out.println(Arrays.toString(moviesBykeyword).replace("[", "").replace("]", ""));
+                                    }
+
+                                    break;
+                                }
+
+                                if (selectNum == 2) {
+                                    moviesBykeyword = movieOperations.searchMajor(setKeyword);
+
+                                    if (moviesBykeyword.length == 0) {
+                                        System.out.printf("영화가 없습니다.%n%n");
+                                    } else {
+                                        System.out.println(Arrays.toString(moviesBykeyword).replace("[", "").replace("]", ""));
+                                    }
+
+                                    break;
+                                }
+
+                                if (selectNum == 3) {
+                                    if (setKeyword.equals("1") || setKeyword.equals("2") || setKeyword.equals("3")) {
+
+                                        Genre[] genres = Genre.values();
+
+                                        setKeyword = genres[Integer.parseInt(setKeyword) - 1].name();
+
+                                        moviesBykeyword = movieOperations.searchGenre(setKeyword);
+
+                                        if (moviesBykeyword.length == 0) {
+                                            System.out.printf("영화가 없습니다.%n%n");
+                                        } else {
+                                            System.out.println(Arrays.toString(moviesBykeyword).replace("[", "").replace("]", ""));
+                                        }
+
+                                        break;
+                                    } else {
+                                        System.out.println("잘못된 입력입니다.");
+                                    }
+                                }
                             }
-                        }
+                            break;
                     }
                     break;
 
+
                 /**
-                 * 영화 정보 삭제
+                 * 영화 정보 삭제 (선택한 영화 삭제 / 전체 삭제 중 선택)
                  */
-                case 6:
+                case "d":
                     if (movies.length == 0) {
                         System.out.printf("영화가 없습니다.%n%n");
 
                         break;
                     } else {
-                        System.out.println(Arrays.toString(movies));
+                        System.out.println("========================== 영화 목록 ==========================");
+                        System.out.println(Arrays.toString(movies).replace("[", "").replace("]", ""));
+                        System.out.println("==============================================================");
+                        System.out.println();
                     }
 
-                    System.out.println("삭제할 영화의 번호를 입력해주세요");
-                    int num = sc.nextInt();
-                    movieOperations.removeTarget(num);
+                    System.out.println("=======================");
+                    System.out.println("1. 선택한 영화 삭제");
+                    System.out.println("2. 영화 목록 전체 삭제");
+                    System.out.println("=======================");
+                    System.out.print("번호 입력 : ");
+                    selectNum = sc.nextInt();
 
-                    System.out.println("해당 영화가 삭제되었습니다.");
-
-
-                    break;
-
-                /**
-                 * 영화목록 전체 삭제
-                 */
-                case 7:
-                    if (movies.length == 0) {
-                        System.out.printf("영화가 없습니다.%n%n");
-
+                    if (selectNum > 2 || selectNum < 1) {
+                        System.out.println("잘못된 입력입니다! 초기화면으로 돌아갑니다.");
                         break;
                     }
 
-                    movieOperations.removeAll();
-                    System.out.printf("영화 목록이 전부 삭제되었습니다.%n%n");
+                    switch (selectNum) {
+                        /**
+                         * 선택한 영화 삭제
+                         */
+                        case 1:
+
+                            System.out.println("삭제할 영화의 번호를 입력해주세요");
+                            int num = sc.nextInt();
+                            movieOperations.removeTarget(num);
+
+                            System.out.println("해당 영화가 삭제되었습니다.");
+
+                            break;
+
+                        /**
+                         * 영화목록 전체 삭제
+                         */
+                        case 2:
+                            if (movies.length == 0) {
+                                System.out.printf("영화가 없습니다.%n%n");
+
+                                break;
+                            }
+
+                            movieOperations.removeAll();
+                            System.out.printf("영화 목록이 전부 삭제되었습니다.%n%n");
+
+                            break;
+                    }
 
                     break;
-                case -1:
-                    System.out.println("종료되었습니다.");
-                    flag = movieOperations.exit();
+                case "e":
+                    System.out.printf("정말 종료하시겠습니까? %n[ 예 : -1입력 ][ 아니오 : 아무 키나 입력 ]%n 입력하기 : ");
+                    selectNum = sc.nextInt();
+                    flag = movieOperations.exit(selectNum);
             }
         }
+    }
+
+    /**
+     * 목록에 해당되지 않는 값을 입력하는 경우 검증결과를 반환하는 API
+     * @param select
+     * @param searchOption
+     * @return select
+     */
+    private static String vaildSearchOption(String select, String[] searchOption) {
+        for (String option : searchOption) {
+            if (select.equals(option)) {
+                return select;
+            }
+        }
+        return null;
     }
 }

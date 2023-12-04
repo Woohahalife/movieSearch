@@ -82,5 +82,4 @@ class MovieOperationsImplTest {
         assertThat(getMovies).containsExactlyInAnyOrder(movie1, movie2);
         assertThat(result).containsExactly(getMovies);
     }
-
 }
