@@ -4,13 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="683ba163-3471-401f-bd6e-7fd2a0b346c5" name="Changes" comment="기능별 요구사항(기능 선택 오류시 원하는 반환점으로 롤백) 구현 및 테스트 완료">
+    <list default="true" id="683ba163-3471-401f-bd6e-7fd2a0b346c5" name="Changes" comment="기능 요구사항 구현 및 테스트 완료">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controller/MovieOperationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/MovieOperationController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dto/Movie.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dto/Movie.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/service/MovieOperations.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/service/MovieOperations.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/service/MovieOperationsImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/service/MovieOperationsImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/service/MovieOperationsImplTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/service/MovieOperationsImplTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -44,27 +39,28 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary&quot;: &quot;JUnit5&quot;,
-    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5&quot;: &quot;&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/FAST_JAVA/movieSearch/src/main/java&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settingsdialog.project.gradle&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
+    "git-widget-placeholder": "master",
+    "last_opened_file_path": "C:/FAST_JAVA/movieSearch/src/main/java",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "reference.settingsdialog.project.gradle",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\FAST_JAVA\movieSearch\src\main\java" />
@@ -168,7 +164,7 @@
       <workItem from="1701435444861" duration="16773000" />
       <workItem from="1701606806908" duration="10871000" />
       <workItem from="1701652272750" duration="11018000" />
-      <workItem from="1701677736003" duration="9217000" />
+      <workItem from="1701677736003" duration="11174000" />
     </task>
     <task id="LOCAL-00001" summary="dto, config, service, controller 구성 및 1차설계완료">
       <option name="closed" value="true" />
@@ -194,7 +190,15 @@
       <option name="project" value="LOCAL" />
       <updated>1701677882104</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="기능 요구사항 구현 및 테스트 완료">
+      <option name="closed" value="true" />
+      <created>1701687274872</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1701687274873</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -204,7 +208,8 @@
     <MESSAGE value="dto, config, service, controller 구성 및 1차설계완료" />
     <MESSAGE value="컨셉별 영화정보 검색 출력 확인 &amp; 평점별 내림차순 정렬 기능 추가, 장르별 선택 출력 버그 해결" />
     <MESSAGE value="기능별 요구사항(기능 선택 오류시 원하는 반환점으로 롤백) 구현 및 테스트 완료" />
-    <option name="LAST_COMMIT_MESSAGE" value="기능별 요구사항(기능 선택 오류시 원하는 반환점으로 롤백) 구현 및 테스트 완료" />
+    <MESSAGE value="기능 요구사항 구현 및 테스트 완료" />
+    <option name="LAST_COMMIT_MESSAGE" value="기능 요구사항 구현 및 테스트 완료" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
